@@ -16,6 +16,24 @@ namespace Cabinet
             card.AddAuthor(new Author("Василий", "Симоненко", "Андреевич", new DateTime(1935, 1, 08)));
 
             Console.WriteLine(card);
+
+            Dictionary<int, string> UkraineCities = new Dictionary<int, string>
+            {
+                { 2967, "Киев" },
+                { 1443, "Харьков" },
+                { 1017, "Одесса" },
+                { 990, "Днепр" },
+                { 732, "Запорожье" },
+                { 724, "Львов" },
+                { 619, "Крывый Риг" },
+                { 480, "Николаев" },
+                { 436, "Мариуполь" },
+                { 370, "Винница" },
+            };
+            foreach (var data in UkraineCities)
+            {
+                Console.WriteLine("{0} - {1}", data.Key + " тыс. чел.", data.Value);
+            }
         }
     }
 }
