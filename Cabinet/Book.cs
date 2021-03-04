@@ -55,7 +55,6 @@ namespace Cabinet
         {
             return $"The book" + 
                 $"\nTitle: {Title}" + 
-                $"\nAuthors: {Authors}" +
                 $"\nGenre: {this.genre}" + 
                 $"\nContent: {Content}" +
                 $"\nDate of publish: {DatePublished}" + 

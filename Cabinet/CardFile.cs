@@ -17,19 +17,22 @@ namespace Cabinet
             {
                 _storage.Add((char)i, new SortedList<Author, List<Book>>());
             }
-            foreach (var item in _storage.Keys)
-            {
-                Console.WriteLine(item);
-            }
         }
 
-        public KeyValuePair<Author, List<Book>> getAuthorData(string name, string surname, string patronimic, DateTime birthDate)
+        public List<Book> getBooks(string name, string surname)
         {
-            throw new NotImplementedException();
-        }
-        public List<Book> getBook(string name, string surname)
-        {
-            throw new NotImplementedException();
+            char Letter = surname.ToUpper()[0]; //first letter of the author's surname
+            if (_storage.ContainsKey(Letter))
+            {
+                foreach (Author oneAuthor in _storage[Letter].Keys)
+                {
+                    if (oneAuthor.Name.Equals(name) && oneAuthor.Surname.Equals(surname))
+                    {
+                        return _storage[Letter][oneAuthor];
+                    }
+                }
+            }
+            return null;
         }
         public List<Book> getBooks(string title)
         {
@@ -70,15 +73,63 @@ namespace Cabinet
         }
         public void AddBook(Book book)
         {
-
+            foreach (Author oneAuthor in book.Authors)
+            {
+                AddAuthor(oneAuthor);
+                if (getBook(oneAuthor, book.Title) == null)
+                {
+                    _storage[oneAuthor.Surname.ToUpper()[0]][oneAuthor].Add(book);
+                }
+            }
+            
         }
         public Book getBook(Author author, string title)
         {
-            throw new NotImplementedException();
+            if (_storage.ContainsKey(author.Surname.ToUpper()[0]))
+            {
+                foreach (Author auth in _storage[author.Surname.ToUpper()[0]].Keys)
+                {
+                    if (author.Equals(auth))
+                    {
+                        foreach (Book book in _storage[author.Surname.ToUpper()[0]][author])
+                        {
+                            if (book.Title.Equals(title))
+                            {
+                                return book;
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
         }
         public List<Book> getBooks(Author author)
         {
-            throw new NotImplementedException();
+            if (_storage.ContainsKey(author.Surname.ToUpper()[0]))
+            {
+                foreach (Author auth in _storage[author.Surname.ToUpper()[0]].Keys)
+                {
+                    if (author.Equals(auth))
+                    {
+                        return _storage[author.Surname.ToUpper()[0]][author];
+                    }
+                }
+            }
+            return null;
+        }
+        public KeyValuePair<Author, List<Book>> ? getAuthorData(string name, string surname, string patronimic, DateTime birxhDate)
+        {
+            if (_storage.ContainsKey(surname.ToUpper()[0]))
+            {
+                foreach (Author auth in _storage[surname.ToUpper()[0]].Keys)
+                {
+                    if (auth.Name.Equals(name) && auth.Surname.Equals(surname) && auth.Patroninimic.Equals(patronimic) && auth.birthDate == birxhDate)
+                    {
+                        return new KeyValuePair<Author, List<Book>>(auth, _storage[surname.ToUpper()[0]][auth]);
+                    }
+                }
+            }
+            return null;
         }
     }
 }

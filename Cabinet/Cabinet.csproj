@@ -46,6 +46,7 @@
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="CardFile.cs" />
+    <Compile Include="FileReader.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
