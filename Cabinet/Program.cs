@@ -12,7 +12,7 @@ namespace Cabinet
         {
             try
             {
-                CardFile card = new CardFile();
+                /*ardFile card = new CardFile();
                 Author Shevchenko = new Author("Тарас", "Шевченко", "Григорьевич", new DateTime(1814, 3, 09));
                 card.AddAuthor(Shevchenko);
 
@@ -50,13 +50,19 @@ namespace Cabinet
                 Console.WriteLine("This is America");
                 KeyValuePair<Author, List<Book>> ? data = card.getAuthorData("Сергей", "Жадан", "Викторович", new DateTime(1974, 8, 23));
                 Console.WriteLine(data.Value.Key);
-                Console.WriteLine(data.Value.Value.Count);
+                Console.WriteLine(data.Value.Value.Count);*/
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                //конструктора нет, поэтому путь к файлу записываем таким образом
+                Console.WriteLine(FileReader.ReadTextFile("C:\\Users\\dmini\\Desktop\\My repo.txt"));
+                Console.WriteLine();
+                Console.ResetColor();
             }
             catch(Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                //Console.WriteLine(ex.StackTrace);
                 Console.ResetColor();
             }
         }
