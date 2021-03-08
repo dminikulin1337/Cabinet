@@ -53,7 +53,7 @@ namespace Cabinet
                 Console.WriteLine(data.Value.Value.Count);*/
 
                 Console.ForegroundColor = ConsoleColor.Green;
-                //конструктора нет, поэтому путь к файлу записываем таким образом
+                //конструктора FileReader'a нет, поэтому путь к файлу записываем таким образом
                 Console.WriteLine(FileReader.ReadTextFile("C:\\Users\\dmini\\Desktop\\My repo.txt"));
                 Console.WriteLine();
                 Console.ResetColor();
