@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet
 {
-    class FileReader
+    public class FileReader
     {
         static public string ReadTextFile(string pathToFile)
         {

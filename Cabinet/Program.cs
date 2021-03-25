@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Cabinet
 {
@@ -72,11 +73,22 @@ namespace Cabinet
             BinaryFormatter formatter = new BinaryFormatter();
             //serialization
             Stream stream = File.Create("Book.bin");
-            formatter.Serialize(stream, new Book("Just a book", "COntent.net", Genre.Analitics, DateTime.Now, Publisher.Unknown));
+            formatter.Serialize(stream, new Book("Just a book", "Content.net", Genre.Analitics, DateTime.Now, Publisher.Unknown));
             stream.Close();
             //deserialization
             Book book = (Book)formatter.Deserialize(File.OpenRead("Book.bin"));
             Console.WriteLine(book);
+
+            XmlSerializer XMLS = new XmlSerializer(typeof(Book));
+            Stream XMLStream = File.Create("Book.xml");
+            Book zBook = new Book("Just a book", "Content.net", Genre.Analitics, DateTime.Now, Publisher.Unknown);
+            zBook.Authors.Add(new Author("Andy", "Walker", "Paul", DateTime.Now));
+            zBook.Authors.Add(new Author("Erik", "Mobster", "Dusan", DateTime.Now));
+            XMLS.Serialize(XMLStream, zBook);
+            XMLStream.Close();
+
+            Book Nbook = (Book)XMLS.Deserialize(File.OpenRead("Book.xml"));
+            Console.WriteLine(Nbook);
         }
     }
 }

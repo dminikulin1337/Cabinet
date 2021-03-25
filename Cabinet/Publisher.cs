@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet
 {
-    enum Publisher
+    public enum Publisher
     {
         VSL,
         BookClub,

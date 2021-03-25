@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Cabinet
 {
     [Serializable]
-    class Book
+    public class Book
     {
         private string _title;
         private string _content;

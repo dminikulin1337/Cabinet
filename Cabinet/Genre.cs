@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet
 {
-    enum Genre
+    public enum Genre
     {
         History,
         Religion,
