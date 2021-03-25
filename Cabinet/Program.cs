@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Cabinet
 {
+    [Serializable]
     class Program
     {
         static void Main(string[] args)
         {
-            try
+            /*try
             {
-                /*ardFile card = new CardFile();
+                CardFile card = new CardFile();
                 Author Shevchenko = new Author("Тарас", "Шевченко", "Григорьевич", new DateTime(1814, 3, 09));
                 card.AddAuthor(Shevchenko);
 
@@ -50,7 +53,7 @@ namespace Cabinet
                 Console.WriteLine("This is America");
                 KeyValuePair<Author, List<Book>> ? data = card.getAuthorData("Сергей", "Жадан", "Викторович", new DateTime(1974, 8, 23));
                 Console.WriteLine(data.Value.Key);
-                Console.WriteLine(data.Value.Value.Count);*/
+                Console.WriteLine(data.Value.Value.Count);
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 //конструктора FileReader'a нет, поэтому путь к файлу записываем таким образом
@@ -64,7 +67,16 @@ namespace Cabinet
                 Console.WriteLine(ex.Message);
                 //Console.WriteLine(ex.StackTrace);
                 Console.ResetColor();
-            }
+            }*/
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            //serialization
+            Stream stream = File.Create("Book.bin");
+            formatter.Serialize(stream, new Book("Just a book", "COntent.net", Genre.Analitics, DateTime.Now, Publisher.Unknown));
+            stream.Close();
+            //deserialization
+            Book book = (Book)formatter.Deserialize(File.OpenRead("Book.bin"));
+            Console.WriteLine(book);
         }
     }
 }

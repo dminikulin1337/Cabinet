@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cabinet
 {
+    [Serializable]
     class Author: IComparable
     {
         private string _name;
